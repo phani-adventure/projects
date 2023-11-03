@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Dropdowns</title>
+</head>
+<body>
+
+  <label for="firstDropdown">Select Category:</label>
+  <select id="firstDropdown" onchange="updateSecondDropdown()">
+    <option value="fruits">Fruits</option>
+    <option value="vegetables">Vegetables</option>
+  </select>
+
+  <br>
+
+  <label for="secondDropdown">Select Item:</label>
+  <select id="secondDropdown">
+    <!-- Options will be dynamically populated here -->
+  </select>
+
+  <script>
+    function updateSecondDropdown() {
+      // Get the selected value from the first dropdown
+      var selectedCategory = document.getElementById("firstDropdown").value;
+
+      // Get the second dropdown
+      var secondDropdown = document.getElementById("secondDropdown");
+
+      // Clear existing options
+      secondDropdown.innerHTML = '';
+
+      // Populate options based on the selected category
+      if (selectedCategory === "fruits") {
+        addOption(secondDropdown, "apple", "Apple");
+        addOption(secondDropdown, "banana", "Banana");
+        addOption(secondDropdown, "orange", "Orange");
+      } else if (selectedCategory === "vegetables") {
+        addOption(secondDropdown, "carrot", "Carrot");
+        addOption(secondDropdown, "broccoli", "Broccoli");
+        addOption(secondDropdown, "tomato", "Tomato");
+      }
+    }
+
+    function addOption(selectElement, value, text) {
+      var option = document.createElement("option");
+      option.value = value;
+      option.text = text;
+      selectElement.add(option);
+    }
+
+    // Initial population of the second dropdown
+    updateSecondDropdown();
+  </script>
+
+</body>
+</html>
